@@ -52,6 +52,7 @@
                   </div>
                   <!-- Single Register input area start -->
                   <div class="actions">
+                    <%= f.hidden_field :role, :value => "domestic_applicant" %>
                     <%= f.submit "Sign up", { :class => "btn btn-default", :id => "login_submit" } %>
                   </div>
                 <% end %>
