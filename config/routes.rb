@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   end
 
   resources :charges
+  resources :courses
+  resources :course_registrations
 end

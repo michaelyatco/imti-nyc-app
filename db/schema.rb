@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170407004553) do
+ActiveRecord::Schema.define(version: 20170428002626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,24 @@ ActiveRecord::Schema.define(version: 20170407004553) do
     t.decimal  "amount",      precision: 8, scale: 2
     t.string   "customer_id"
     t.string   "description"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  create_table "course_registrations", force: :cascade do |t|
+    t.integer  "course_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.decimal  "price",       precision: 7, scale: 2
+    t.text     "description"
+    t.string   "lecturer"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
   end
