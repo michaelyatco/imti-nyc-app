@@ -1,11 +1,12 @@
 source 'https://rubygems.org'
 
-gem 'rspec-rails', '~> 3.5'
+# gem 'rspec-rails', '~> 3.5'
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'mailgun-ruby', '~>1.1.6'
 gem 'stripe'
 gem 'bootstrap_form'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -15,6 +16,7 @@ gem 'devise'
 gem 'pg', '~> 0.18'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
+gem 'roo'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -43,6 +45,8 @@ gem 'jbuilder', '~> 2.5'
 group :development, :test do
   gem 'pry-rails'
   gem 'dotenv-rails'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
 end
 
 group :development do
@@ -53,6 +57,11 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
+
+group :test do 
+  gem "faker"
+  gem "database_cleaner"
+end     
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

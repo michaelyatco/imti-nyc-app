@@ -3,7 +3,6 @@ class LocalSchool < ApplicationRecord
   validates :code, uniqueness: true, allow_nil: true 
   after_create :generate_code 
 
-
   private
 
   def generate_code

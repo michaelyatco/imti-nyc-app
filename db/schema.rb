@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170425003011) do
+ActiveRecord::Schema.define(version: 20170522230715) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,17 @@ ActiveRecord::Schema.define(version: 20170425003011) do
     t.datetime "updated_at",                          null: false
   end
 
+  create_table "courses", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.decimal  "price",       precision: 7, scale: 2
+    t.text     "description"
+    t.string   "lecturer"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
   create_table "documents", force: :cascade do |t|
     t.integer  "application_id"
     t.datetime "created_at",              null: false
@@ -76,8 +87,11 @@ ActiveRecord::Schema.define(version: 20170425003011) do
   create_table "local_schools", force: :cascade do |t|
     t.integer  "code"
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "contact_name"
+    t.string   "school_address"
+    t.text     "bio"
   end
 
   create_table "montessori_trainings", force: :cascade do |t|
@@ -99,6 +113,24 @@ ActiveRecord::Schema.define(version: 20170425003011) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "application_id"
+  end
+
+  create_table "registrant_workshops", force: :cascade do |t|
+    t.integer  "registrant_id"
+    t.integer  "workshop_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "registrants", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "affiliation"
+    t.string   "occupation"
+    t.string   "email"
+    t.string   "phone"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -124,6 +156,7 @@ ActiveRecord::Schema.define(version: 20170425003011) do
     t.boolean  "donor"
     t.integer  "role"
     t.integer  "local_school_id"
+    t.integer  "course_id"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
@@ -136,6 +169,15 @@ ActiveRecord::Schema.define(version: 20170425003011) do
     t.datetime "end_date"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+  end
+
+  create_table "workshops", force: :cascade do |t|
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "name"
+    t.string   "description"
+    t.string   "date"
+    t.string   "price"
   end
 
 end
